@@ -2,7 +2,7 @@ import { HomePage, InteriorPlantsPage, PlantDetail, Plante } from '@/types/home'
 const BASE_URL = 'http://127.0.0.1:8000';
 
 export const fetchHomePage = async (): Promise<HomePage> => {
-  const response = await fetch('http://127.0.0.1:8000/api/v2/pages/3/');
+  const response = await fetch(`${BASE_URL}/api/v2/pages/3/`);
   if (!response.ok) {
     throw new Error('Failed to fetch home page');
   }
