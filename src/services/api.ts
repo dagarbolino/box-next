@@ -1,4 +1,4 @@
-import { HomePage, InteriorPlantsPage, Plante } from '@/types/home';
+import { HomePage, InteriorPlantsPage, PlantDetail, Plante } from '@/types/home';
 const BASE_URL = 'http://127.0.0.1:8000';
 
 export const fetchHomePage = async (): Promise<HomePage> => {
@@ -46,3 +46,33 @@ export const fetchInteriorPlantsPage = async (): Promise<InteriorPlantsPage> => 
     plantes: plantsWithImages
   };
 };
+
+export async function fetchPlantDetail(id: string): Promise<PlantDetail | null> {
+  try {
+    const response = await fetch(`${BASE_URL}/api/v2/pages/${id}/`);
+    if (!response.ok) {
+      if (response.status === 404) {
+        return null;
+      }
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    
+    // Fetch image metadata if image exists
+    if (data.value.image) {
+      const imageData = await fetchImageMetadata(data.value.image);
+      return {
+        ...data,
+        value: {
+          ...data.value,
+          imageMeta: imageData
+        }
+      };
+    }
+    
+    return data;
+  } catch (error) {
+    console.error('Error fetching plant detail:', error);
+    throw error;
+  }
+}

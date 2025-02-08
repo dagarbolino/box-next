@@ -85,5 +85,26 @@ export interface HomePage {
   body: Section[];
   featured_section_title: string;
   page_related_pages: RelatedPage[];
+}
+
+export interface PlantDetail {
+  id: string;
+  title: string;
+  meta: {
+    type: string;
+    detail_url: string;
+    html_url: string;
+  };
+  value: {
+    nom: string;
+    nom_latin: string;
+    description: string;
+    image: number;
+    imageMeta?: {
+      meta: {
+        download_url: string;
+      };
+    };
+  };
 } 
 

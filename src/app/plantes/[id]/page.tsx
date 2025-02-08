@@ -44,7 +44,16 @@ export default async function PlantePage() {
               <div className="p-8">
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">{plante.value.nom}</h3>
                 <p className="text-green-600 font-medium italic mb-4">{plante.value.nom_latin}</p>
-                <p className="text-gray-600 line-clamp-3">{plante.value.description}</p>
+                <p className="text-gray-600 line-clamp-3 mb-6">{plante.value.description}</p>
+                <Link
+                  href={`/plantes/${plante.id}/detail`}
+                  className="inline-flex items-center px-4 py-2 rounded-lg bg-green-100 text-green-700 hover:bg-green-200 transition-colors duration-200"
+                >
+                  Voir les détails
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                  </svg>
+                </Link>
               </div>
             </div>
           ))}
