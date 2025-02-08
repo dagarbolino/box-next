@@ -1,5 +1,7 @@
 import { fetchInteriorPlantsPage } from '@/services/api';
+import { ArrowLeftIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default async function PlantePage() {
   const data = await fetchInteriorPlantsPage();
@@ -38,6 +40,15 @@ export default async function PlantePage() {
             </div>
           ))}
         </div>
+      </div>
+      <div className="max-w-6xl mx-auto mt-8 flex justify-end">
+        <button className="bg-green-600 text-white gap-2 px-6 py-3 rounded-lg hover:bg-green-700 transition-colors">
+          <Link className="flex items-center gap-2" href="/">
+            <ArrowLeftIcon className="w-4 h-4" />
+            Retour accueil
+          </Link>
+
+        </button>
       </div>
     </main>
   );
